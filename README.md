@@ -85,3 +85,51 @@ and run the following command
 ```
 npm run build
 ```
+
+## Step 7:
+
+Now we will install some more packages to provide backwards javascript compatibility. Run the following commands in your terminal
+```
+npm i @babel/core @babel/preset-env babel-loader
+```
+
+Let's create a babel config file ```.babelrc```
+```
+touch .babelrc
+```
+
+And set presets inside ```.babelrc```
+```json
+{
+    "presets": ["@babel/preset-env"]
+}
+```
+
+## Step 8:
+Now we are going to create **webpack configuration** file.
+
+Run the following command
+```
+touch webpack.config.js
+```
+
+Once ```webpack.config.js``` is created, add the following script to test **javascript** files using *babel-loader* and set mode to development.
+```js
+module.exports = {
+    
+    mode: 'development',
+
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    // without additional settings, this will refer to .babelrc
+                    loader: 'babel-loader'
+                }
+            }
+        ]
+    }
+}
+```
