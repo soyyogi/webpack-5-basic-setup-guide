@@ -14,13 +14,6 @@ npm init -y
 
 ## Step 2:
 
-Link index.js file to index.html file using
-```html
-<script src="index.js"></script>
-```
-
-## Step 3:
-
 Create JS modules and import them in index.js file using ES6 Modules.
 
 For Example:
@@ -49,7 +42,7 @@ Using this module will throw this error
 Uncaught SyntaxError: Cannot use import statement outside a module
 ```
 
-## Step 4:
+## Step 3:
 We will introduce webpack to resolve the error we got in last step.
 
 In order to install **Webpack** as development dependency use the following command.
@@ -57,18 +50,20 @@ In order to install **Webpack** as development dependency use the following comm
 npm i -D webpack webpack-cli
 ```
 
-## Step 5:
+## Step 4:
 Create a new directory called **src** using
 ```
 mkdir src
 ```
 
-And move all JS files inside **src** directory using
+And move all JS files and index.html inside **src** directory using
 ```
 mv *.js ./src
+
+mv index.html ./src
 ```
 
-## Step 6:
+## Step 5:
 Run the following command to compile the project
 ```
 npx webpack
@@ -86,7 +81,7 @@ and run the following command
 npm run build
 ```
 
-## Step 7:
+## Step 6:
 
 Now we will install some more packages to provide backwards javascript compatibility. Run the following commands in your terminal
 ```
@@ -105,7 +100,7 @@ And set presets inside ```.babelrc```
 }
 ```
 
-## Step 8:
+## Step 7:
 Now we are going to create **webpack configuration** file.
 
 Run the following command
@@ -134,7 +129,7 @@ module.exports = {
 }
 ```
 
-## Step 9:
+## Step 8:
 To enable smooth **debugging** we are going to add a tool to provide source mapping by adding the following script inside ```webpack.config.js```
 ```js
 module.exports = {
@@ -143,5 +138,124 @@ module.exports = {
     
     // it goes at the end of the previous script we added in last step.
     devtool: 'source-map'
+}
+```
+
+## Step 9:
+
+<h2>Optional</h2>
+
+Add watch flag to build script to enable webpack auto compile after each change.
+
+```In package.json```
+
+```json
+"scripts": {
+    ...,
+    "build": "webpack --watch"
+}
+```
+
+## Step 10:
+
+First let's install a plugin (as development dependency) that simplifies creation of HTML files to serve your bundles
+```
+npm i -D html-webpack-plugin
+```
+
+We are going to setup **entry point** and **output** for **javaScript** file and add a plugin for **HTML** template.
+
+Add the following script inside ```webpack.config.js```
+```js
+// This goes at the top of the file.
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+
+    // It goes at the beginning of the file
+    entry: './src/index.js',
+    
+    output: {
+        path: __dirname + '/dist',
+        filename: 'bundle.js'
+    },
+    
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'Webpack 5',
+            filename: 'index.html'
+        })
+    ],
+
+    ... // rest of the script
+    
+}
+```
+
+Now delete the old built files in **dist** directory and run the following command
+```
+npm run build
+```
+
+## Step 11:
+
+Add a development server to enable **hot reloading** to keep the app running and to inject new versions of the files that you edited at runtime.
+
+Add the following script inside ```webpack.config.js```
+```js
+module.exports = {
+    
+    ...,
+    
+    // it goes at the end of the previous script we added in step 8.
+    devServer: {
+        contentBase: './dist'
+    }
+}
+```
+
+And install the following package as development dependency
+```
+npm i -D webpack-dev-server
+```
+
+Once the webpack-dev-server is installed, add a ```start``` script in ```package.json```
+```json
+"scripts": {
+    ...,
+    "start": "webpack serve"
+}
+```
+
+and run the following command to start the server
+```
+npm start
+```
+
+## Step 12:
+Add a production env variable to run production build
+
+Update ```build``` script and create new ```build-dev``` script in ```package.json```
+```json
+"scripts": {
+    ...,
+    "build": "NODE_ENV=production webpack",
+    "build-dev": "webpack --watch"
+}
+```
+
+Add the following script inside ```webpack.config.js```
+```js
+
+// append this line before module.exports
+const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+
+module.exports = {
+    
+    // change mode value
+    mode: mode,
+
+    ... // rest of the script
+
 }
 ```

@@ -87,4 +87,4 @@ console.log(_wizard__WEBPACK_IMPORTED_MODULE_0__.wizard);
 
 /******/ })()
 ;
-//# sourceMappingURL=main.js.map
+//# sourceMappingURL=bundle.js.map
