@@ -72,7 +72,7 @@ npx webpack
 **Or** add a ```build``` script in ```package.json```
 ```json
 "scripts": {
-    ...,
+    ... // rest of the script
     "build": "webpack"
 }
 ```
@@ -134,7 +134,7 @@ To enable smooth **debugging** we are going to add a tool to provide source mapp
 ```js
 module.exports = {
     
-    ...,
+    ... // rest of the script
     
     // it goes at the end of the previous script we added in last step.
     devtool: 'source-map'
@@ -151,7 +151,7 @@ Add watch flag to build script to enable webpack auto compile after each change.
 
 ```json
 "scripts": {
-    ...,
+    ... // rest of the script
     "build": "webpack --watch"
 }
 ```
@@ -205,7 +205,7 @@ Add the following script inside ```webpack.config.js```
 ```js
 module.exports = {
     
-    ...,
+    ... // rest of the script
     
     // it goes at the end of the previous script we added in step 8.
     devServer: {
@@ -222,7 +222,7 @@ npm i -D webpack-dev-server
 Once the webpack-dev-server is installed, add a ```start``` script in ```package.json```
 ```json
 "scripts": {
-    ...,
+    ... // rest of the script
     "start": "webpack serve"
 }
 ```
@@ -238,7 +238,7 @@ Add a production env variable to run production build
 Update ```build``` script and create new ```build-dev``` script in ```package.json```
 ```json
 "scripts": {
-    ...,
+    ... // rest of the script
     "build": "NODE_ENV=production webpack",
     "build-dev": "webpack --watch"
 }
