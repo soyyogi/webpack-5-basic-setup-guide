@@ -1,0 +1,1 @@
+(()=>{"use strict";console.log("Hi from index.js"),console.log("Fredo")})();
