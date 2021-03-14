@@ -1,24 +1,6 @@
-/*
- * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
-
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _wizard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./wizard */ \"./src/wizard.js\");\n\nconsole.log('Hi from index.js');\nconsole.log(_wizard__WEBPACK_IMPORTED_MODULE_0__.wizard);\n\n//# sourceURL=webpack://basic-webpack-5-setup/./src/index.js?");
-
-/***/ }),
 
 /***/ "./src/wizard.js":
 /*!***********************!*\
@@ -26,7 +8,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _wiz
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"wizard\": () => (/* binding */ wizard)\n/* harmony export */ });\nvar wizard = 'Fredo';\n\n//# sourceURL=webpack://basic-webpack-5-setup/./src/wizard.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "wizard": () => (/* binding */ wizard)
+/* harmony export */ });
+var wizard = 'Fredo';
 
 /***/ })
 
@@ -86,11 +72,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
-/******/ 	
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wizard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./wizard */ "./src/wizard.js");
+
+console.log('Hi from index.js');
+console.log(_wizard__WEBPACK_IMPORTED_MODULE_0__.wizard);
+})();
+
 /******/ })()
 ;
+//# sourceMappingURL=main.js.map

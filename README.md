@@ -133,3 +133,15 @@ module.exports = {
     }
 }
 ```
+
+## Step 9:
+To enable smooth **debugging** we are going to add a tool to provide source mapping by adding the following script inside ```webpack.config.js```
+```js
+module.exports = {
+    
+    ...,
+    
+    // it goes at the end of the previous script we added in last step.
+    devtool: 'source-map'
+}
+```
