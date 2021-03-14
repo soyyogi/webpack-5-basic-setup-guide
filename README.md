@@ -72,7 +72,6 @@ npx webpack
 **Or** add a ```build``` script in ```package.json```
 ```json
 "scripts": {
-    // rest of the script
     "build": "webpack"
 }
 ```
@@ -151,7 +150,6 @@ Add watch flag to build script to enable webpack auto compile after each change.
 
 ```json
 "scripts": {
-    // rest of the script
     "build": "webpack --watch"
 }
 ```
@@ -222,7 +220,6 @@ npm i -D webpack-dev-server
 Once the webpack-dev-server is installed, add a ```start``` script in ```package.json```
 ```json
 "scripts": {
-    // rest of the script
     "start": "webpack serve"
 }
 ```
@@ -238,7 +235,6 @@ Add a production env variable to run production build
 Update ```build``` script and create new ```build-dev``` script in ```package.json```
 ```json
 "scripts": {
-    // rest of the script
     "build": "NODE_ENV=production webpack",
     "build-dev": "webpack --watch"
 }
